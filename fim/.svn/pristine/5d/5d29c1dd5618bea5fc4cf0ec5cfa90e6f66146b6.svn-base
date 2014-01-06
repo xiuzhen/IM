@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="400,300" caption="0,0,0,300" roundcorner="4,4">
+    <VerticalLayout bkimage="./images/background.png">
+        <HorizontalLayout width="400" height="30" bkcolor2="#FFAAAAA0">
+            <HorizontalLayout width="90" height="30" padding="310,0,0,0">
+                <Button name="close" float="true" pos="60,1,0,0" width="29" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;./images/normal.png&apos; source=&apos;56,0,85,20&apos; dest=&apos;0,0,29,20&apos; " hotimage=" file=&apos;./images/hot.png&apos; source=&apos;56,0,85,20&apos; dest=&apos;0,0,29,20&apos; " pushedimage=" file=&apos;./images/active.png&apos; source=&apos;56,0,85,20&apos; dest=&apos;0,0,29,20&apos; " />
+                <Button name="min" float="true" pos="31,1,0,0" width="29" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;./images/normal.png&apos; source=&apos;30,0,56,20&apos; dest=&apos;0,0,29,20&apos; " hotimage=" file=&apos;./images/hot.png&apos; source=&apos;30,0,56,20&apos; dest=&apos;0,0,29,20&apos; " pushedimage=" file=&apos;./images/active.png&apos; source=&apos;30,0,56,20&apos; dest=&apos;0,0,29,20&apos; " />
+                <Button name="set" float="true" pos="2,1,0,0" width="29" height="20" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage=" file=&apos;./images/normal.png&apos; source=&apos;4,0,30,20&apos; dest=&apos;0,0,29,20&apos; " hotimage=" file=&apos;./images/hot.png&apos; source=&apos;4,0,30,20&apos; dest=&apos;0,0,29,20&apos; " pushedimage=" file=&apos;./images/active.png&apos; source=&apos;4,0,30,20&apos; dest=&apos;0,0,29,20&apos; " />
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout width="400" height="225">
+            <Container width="114" height="50" padding="20,20,0,0" bkimage="images\logo1.png" />
+            <Text name="head" float="true" pos="39,108,0,0" width="83" height="83" bkimage="images\photo.png" textpadding="2,0,2,0" align="wrap" />
+            <Edit name="username" float="true" pos="133,112,0,0" width="150" height="27" bkimage="images\Input-box.png" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Button name="register" float="true" pos="288,114,0,0" width="69" height="22" bkimage="images\cipher.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+            <Edit name="password" float="true" pos="134,161,0,0" width="150" height="27" bkimage="images\Input-box.png" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+            <Button name="forgotpwd" float="true" pos="286,161,0,0" width="69" height="27" bkimage="images\cipher2.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+        </HorizontalLayout>
+        <HorizontalLayout width="400" height="45">
+            <Button name="login" text="登    录" float="true" pos="110,7,0,0" width="180" height="31" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="images\button.png" hotimage="images\button2.png" pushedimage="images\button3.png" />
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

@@ -1,0 +1,37 @@
+﻿Build started 2013/12/26 2:59:30.
+     1>Project "E:\code\duilib\duilib\r387\fim\fim\fim.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\fim.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../duilib /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt MainFrame.cpp
+         MainFrame.cpp
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\code\duilib\duilib\r387\fim\Release\fim.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:../../lib /LIBPATH:./ kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\fim.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\code\duilib\duilib\r387\fim\Release\fim.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\code\duilib\duilib\r387\fim\Release\fim.lib" /MACHINE:X86 Release\fim.res
+         Release\chat_dialog.obj
+         Release\ColorPicker.obj
+         Release\color_skin.obj
+         Release\debug.obj
+         Release\FrameWnd.obj
+         Release\main.obj
+         Release\MainFrame.obj
+         Release\StdAfx.obj
+         Release\UIFriends.obj
+         Release\UIGroups.obj
+         Release\UIListCommonDefine.obj
+         Release\UIMicroBlog.obj
+         Generating code
+     1>e:\code\duilib\duilib\r387\fim\fim\framewnd.cpp(135): warning C4700: uninitialized local variable 'hInst' used
+         Finished generating code
+         fim.vcxproj -> E:\code\duilib\duilib\r387\fim\Release\fim.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\code\duilib\duilib\r387\fim\Release\fim.exe;#1" /manifest Release\fim.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\fim.unsuccessfulbuild".
+         Touching "Release\fim.lastbuildstate".
+     1>Done Building Project "E:\code\duilib\duilib\r387\fim\fim\fim.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.97

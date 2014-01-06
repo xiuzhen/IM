@@ -1,0 +1,33 @@
+#pragma once
+#include "duilib.h"
+#include "observer_impl_base.hpp"
+#include "skin_change_event.hpp"
+#include "UIFriends.hpp"
+class CMainFrame :
+	public CXMLWnd
+{
+public:
+	explicit CMainFrame(LPCTSTR pszXMLPath);
+	//	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual void InitWindow();
+	virtual void Notify(TNotifyUI& msg);
+	virtual CControlUI* CreateControl(LPCTSTR pstrClassName);
+	/*	LRESULT OnDropFiles(HDROP hDropInfo);*/
+	void OnExit(TNotifyUI& msg);
+	void OnTimer(TNotifyUI& msg);
+	void SetBkColor(DWORD dwBackColor);
+	LRESULT OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	LRESULT ResponseDefaultKeyEvent(WPARAM wParam);
+
+	void UpdateFriendsList();
+	void UpdateGroupsList();
+	void UpdateMicroBlogList();
+	void OnPrepare(TNotifyUI& msg);
+	int bk_image_index_;
+
+	FriendListItemInfo myself_info_;
+	std::vector<FriendListItemInfo> friends_;
+
+	SkinChangedObserver skin_changed_observer_;
+};
+

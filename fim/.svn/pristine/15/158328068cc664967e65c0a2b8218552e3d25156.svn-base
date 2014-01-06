@@ -1,0 +1,256 @@
+#include "resource.h"
+#include "FrameWnd.h"
+#include <atlstr.h>
+#include "MainFrame.h"
+#include "StdAfx.h"
+
+
+
+static DWORD Colors[5][8] = 
+{
+	{
+		0xFF025da8,0xFFA52A00,0xFF004040,0xFF005500,0xFF00005E,0xFF00008B,0xFF4B0082,0xFF282828
+	},
+	{
+		0xFF8B0000,0xFFFF6820,0xFF8B8B00,0xFF009300,0xFF388E8E,0xFF0000FF,0xFF7B7BC0,0xFF666666
+		},
+		{
+			0xFFFF0000,0xFFFFAD5B,0xFF32CD32,0xFF3CB371,0xFF7FFFD4,0xFF7D9EC0,0xFF800080,0xFF7F7F7F
+		},
+		{
+			0xFFFFC0CB,0xFFFFD700,0xFFFFFF00,0xFF00FF00,0xFF40E0D0,0xFFC0FFFF,0xFF480048,0xFFC0C0C0
+			},
+			{
+				0xFFFFE4E1,0xFFD2B48C,0xFFFFFFE0,0xFF98FB98,0xFFAFEEEE,0xFF68838B,0xFFE6E6FA,0xFFA020F0
+			}
+};
+
+
+CFrameWnd::CFrameWnd( LPCTSTR pszXMLPath )
+	: CXMLWnd(pszXMLPath)
+{
+
+}
+
+
+void CFrameWnd::InitWindow()
+{
+	SetIcon(IDI_ICON1); // 设置任务栏图标
+	CenterWindow();
+	
+
+	//     // 初始化CActiveXUI控件
+	//     CActiveXUI* pActiveXUI = static_cast<CActiveXUI*>(m_PaintManager.FindControl(_T("ActiveXDemo1")));
+	// 
+	//     if( pActiveXUI ) 
+	//     {
+	//         IWebBrowser2* pWebBrowser = NULL;
+	// 
+	//         pActiveXUI->SetDelayCreate(false);              // 相当于界面设计器里的DelayCreate属性改为FALSE，在duilib自带的FlashDemo里可以看到此属性为TRUE             
+	//         pActiveXUI->CreateControl(CLSID_WebBrowser);    // 相当于界面设计器里的Clsid属性里填入{8856F961-340A-11D0-A96B-00C04FD705A2}，建议用CLSID_WebBrowser，如果想看相应的值，请见<ExDisp.h>
+	//         pActiveXUI->GetControl(IID_IWebBrowser2, (void**)&pWebBrowser);
+	// 
+	//         if( pWebBrowser != NULL ) 
+	//         {
+	//             //pWebBrowser->Navigate(L"https://code.google.com/p/duilib/",NULL,NULL,NULL,NULL);  
+	//             pWebBrowser->Navigate(L"http://www.baidu.com/",NULL,NULL,NULL,NULL);  // 由于谷歌时不时被墙，所以换成反应快的网站
+	//             pWebBrowser->Release();
+	//         }
+	//     }
+
+	//     // 初始化CProgressUI控件
+	//     CProgressUI* pProgress = static_cast<CProgressUI*>(m_PaintManager.FindControl(_T("ProgressDemo1")));    
+	//     pProgress->SetValue(100);
+
+	// 初始化CListUI控件
+	// 	CDuiString str;
+	// 	CListUI* pList = static_cast<CListUI*>(m_PaintManager.FindControl(_T("ListDemo1")));
+	// 	if (pList)
+	// 	{
+	// 		for (int i = 0; i < 100; i++)
+	// 		{
+	// 			CListTextElementUI* pListElement = new CListTextElementUI;
+	// 			pListElement->SetTag(i);
+	// 			pList->Add(pListElement);
+	// 
+	// 			str.Format(_T("%d"), i);
+	// 			pListElement->SetText(0, str);
+	// 			pListElement->SetText(1, _T("haha"));
+	// 		}
+	// 	}
+
+}
+
+void CFrameWnd::Notify( TNotifyUI& msg )
+{
+	if( msg.sType == _T("click") ) 
+	{
+		if (_tcsicmp(msg.pSender->GetName(), _T("closebtn")) == 0)
+		{
+			OnExit(msg);
+		}
+		else if (_tcsicmp(msg.pSender->GetName(), _T("minbtn")) == 0)
+		{
+#if defined(UNDER_CE)
+			::ShowWindow(m_hWnd, SW_MINIMIZE);
+#else
+			SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
+#endif
+		}
+// 		else if (_tcsicmp(msg.pSender->GetName(), _T("maxbtn")) == 0)
+// 		{
+// #if defined(UNDER_CE)
+// 			::ShowWindow(m_hWnd, SW_MAXIMIZE);
+// 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kMaxButtonControlName));
+// 			if( pControl ) pControl->SetVisible(false);
+// 			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kRestoreButtonControlName));
+// 			if( pControl ) pControl->SetVisible(true);
+// #else
+// 			SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+// #endif
+// 		}
+// 		else if (_tcsicmp(msg.pSender->GetName(), _T("restorebtn")) == 0)
+// 		{
+// #if defined(UNDER_CE)
+// 			::ShowWindow(m_hWnd, SW_RESTORE);
+// 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kMaxButtonControlName));
+// 			if( pControl ) pControl->SetVisible(true);
+// 			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kRestoreButtonControlName));
+// 			if( pControl ) pControl->SetVisible(false);
+// #else
+// 			SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0);
+// #endif
+// 		}
+		else if( msg.pSender->GetName() == _T("login") ) 
+		{
+			
+			this->ShowWindow(SW_HIDE);
+			
+	
+			HINSTANCE hInst;
+			//MessageBox(NULL,_T("login click"),_T("文件名"),0);
+
+
+			::CoInitialize(NULL);
+			CPaintManagerUI::SetInstance(hInst );
+#ifdef mydebug
+	CMainFrame *pFrame = new CMainFrame(_T("E:\\code\\duilib\\duilib\\r387\\fim\\Release\\images\\main_frame.xml"));
+#else
+	CMainFrame *pFrame = new CMainFrame(_T("./images/main_frame.xml"));
+#endif
+			
+			pFrame->Create(NULL, _T("fim 0.1"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
+			pFrame->SetBkColor(Colors[0][0]);
+			
+			
+// 			pFrame->UpdateFriendsList();
+// 			pFrame->UpdateGroupsList();
+// 			pFrame->UpdateMicroBlogList();
+			pFrame->ShowModal();
+			//MoveWindow(hInst,1,1,100,100);
+			this->Close();
+			delete pFrame;
+			::CoUninitialize();
+		}
+	}
+
+
+	__super::Notify(msg);
+}
+
+// LRESULT CFrameWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+// {
+// 	LRESULT lRes = 0;
+// 	BOOL bHandled = TRUE;
+// 	switch( uMsg ) {
+// 	case WM_DROPFILES:
+// 		HDROP hDropInfo;
+// 		lRes = OnDropFiles( hDropInfo);
+// 		break;
+// 	default:
+// 		bHandled = FALSE;
+// 	}
+// 	if( bHandled ) return lRes;
+// 	
+// }
+
+// LRESULT CFrameWnd::OnDropFiles(HDROP hDropInfo)
+// {
+// 	return TRUE;
+// 
+// }
+
+
+CControlUI* CFrameWnd::CreateControl( LPCTSTR pstrClassName )
+{
+	if (_tcsicmp(pstrClassName, _T("Wnd")) == 0)
+	{
+		CWndUI  *pUI  = new CWndUI;            
+		HWND    hWnd  = CreateWindow(_T("BUTTON"), _T("win32"), WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, 0, 0, 0, 0, m_PaintManager.GetPaintWindow(), NULL, NULL, NULL);
+		pUI->Attach(hWnd);  
+
+		//// 上面用的是win32的按钮，下面这段用MFC的按钮
+		//CButton *pBtn = new CButton;    // 记得释放内存
+		//pBtn->Create(_T("MFC"), WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON, CRect(0, 0, 0, 0), CWnd::FromHandle(m_PaintManager.GetPaintWindow()), 0);
+		//pUI->Attach(*pBtn);            
+		return pUI;
+	}
+
+	return NULL;
+}
+
+
+
+
+
+char * CFrameWnd::w2c(char * pcstr, const wchar_t * pwstr, size_t len)
+{
+	int nlength=wcslen(pwstr);
+
+	//获取转换后的长度
+
+	int nbytes = WideCharToMultiByte( 0, // specify the code page used to perform the conversion
+
+		0,         // no special flags to handle unmapped characters
+
+		pwstr,     // wide character string to convert
+
+		nlength,   // the number of wide characters in that string
+
+		NULL,      // no output buffer given, we just want to know how long it needs to be
+
+		0,
+
+		NULL,      // no replacement character given
+
+		NULL );    // we don't want to know if a character didn't make it through the translation
+
+	// make sure the buffer is big enough for this, making it larger if necessary
+
+	if(nbytes>len)   nbytes=len;
+
+	// 通过以上得到的结果，转换unicode 字符为ascii 字符
+
+	WideCharToMultiByte( 0, // specify the code page used to perform the conversion
+
+		0,         // no special flags to handle unmapped characters
+
+		pwstr,   // wide character string to convert
+
+		nlength,   // the number of wide characters in that string
+
+		pcstr, // put the output ascii characters at the end of the buffer
+
+		nbytes,                           // there is at least this much space there
+
+		NULL,      // no replacement character given
+
+		NULL );
+
+	return pcstr ;
+}
+
+void CFrameWnd::OnExit(TNotifyUI& msg)
+{
+	Close();
+}
